@@ -1,14 +1,31 @@
-number_charaters = {}
+chars = {}
 
-def get_num_words(book):
-  words = book.split()
-  return len(words)
 
-def get_num_charaters(text):
-  for c in text:
-    c = c.lower()
-    try:
-      number_charaters[c] +=1
-    except KeyError:
-      number_charaters[c] = 1
-  return number_charaters  
+def getNumWords(book):
+    words = book.split()
+    return len(words)
+
+
+def getCharsDict(text):
+
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+
+        else:
+            chars[lowered] = 1
+
+    return chars
+
+
+def sortCharacterCounts(characterCounts):
+    def sortOn(items):
+        return items["num"]
+
+    characterCountsList = []
+    for char in characterCounts:
+        characterCountsList.append({"char": char, "num": characterCounts[char]})
+
+    characterCountsList.sort(reverse=True, key=sortOn)
+    return characterCountsList
